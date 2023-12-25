@@ -18,13 +18,13 @@ class User(db.Model):
 
 db.create_all()
 
-#create a test route
+# create a test route
 @app.route('/test', methods=['GET'])
 def test():
     return make_response(jsonify({'message': 'test route'}), 200)
 
 
-#create a user
+# create a user
 @app.route('/users', methods=['POST'])
 def create_user():
     try:
