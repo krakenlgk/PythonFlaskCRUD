@@ -76,17 +76,12 @@ def update_user(id):
 @app.route('/users/<int:id>', methods=['DELETE'])
 def delete_user(id):
     try:
-        user = User.query.filter_by(id=id).first
+        user = User.query.filter_by(id=id).first()
         if user:
             db.session.delete(user)
             db.session.commit()
             return make_response(jsonify({'message': 'user deleted'}), 200)
         return make_response(jsonify({'message': 'user not found'}), 404)
     except e:
+        logger.error(e)
         return make_response(jsonify({'message': 'error deleting user'}), 500)
-
-
-
-
-
-
